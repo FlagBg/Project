@@ -67,7 +67,7 @@ class UserCreate
 	
 		print( $form );
 	}
-	
+	//print "notHi";var_dump( $this->userData);die();
 }
 
 

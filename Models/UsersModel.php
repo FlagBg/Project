@@ -60,10 +60,15 @@ class UsersModel {
 			if( $stmt->rowCount() > 0 )
 			{
 				$rows		= $stmt->fetchAll(PDO::FETCH_ASSOC);
-				$user		= array_pop( $rows ); //print_r(); die();
+				$user		= array_pop( $rows ); 
+				//print_r("hi");
+				//var_dump( $user );//die();
+				return new User( $user['fname'], $user['lname'], $user['age'] );
+			
+				//$userObj	= User($user['fname'], $user['lname'], $user['age']);
+				//$userObj->setId( $user['id'] );
 				
-				$userObj	= User($user['fname'], $user['lname'], $user['age']);
-				$userObj->setId( $user['id'] );
+
 			}
 			else
 			{
@@ -76,22 +81,27 @@ class UsersModel {
 		}
 	}
 	
-// 	public function userUpdate( $userData )
-// 	{
-// 		$sql	= '
-// 				UPDATE `users` SET `id`=[value-1],
-// 				`username`=[value-2],
-// 				`password`=[value-3],
-// 				`role_id`=[value-4],
-// 				`fname`=[value-5],
-// 				`lname`=[value-6],
-// 				`age`=[value-7]
-// 				'
-// 		$stmt 	= $this->db->prepare( $sql );
+ 	public function userEdit( $userData )
+ 	{
+//     kak si go predstavyam . ... edna tablica, koyato vzima dannite za usera.... otdyasno stoyt edni buton4eta
+//		koito kato natisna da promenyam poleto, koeto promenyam, inache vsi4ko drugo da si stoi
+//		kak e logi4no tova da raboti.... tryabva sigurno da se opishat cialostni zayavki... ima nyakakuv nachin;
+//		sega shte napravya deleteUser, zashtoto mislya che e lesno!
+ 		$sql	= '
+				UPDATE `users` SET `id`=[value-1],
+ 				`username`=,
+				`password`=,
+				`role_id`=,
+ 				`fname`=,
+ 				`lname`=[value-6],
+ 				`age`=[value-7]
+				';
+ 		
+ 		$stmt 	= $this->db->prepare( $sql );
 		
-// 		$result = $stmt->execute( $userData );
+ 		$result = $stmt->execute( $userData );
 		
-//	}
+	}
 	
 	
 	public function createUser( $userData )
@@ -111,6 +121,20 @@ class UsersModel {
 		$result	= $stmt->execute( $userData );
 	}
 	
+	public function dropUser( $userData )
+	{
+		print "delete";
+		/*
+		$sql = '
+				DELETE FROM users WHERE id=?
+				';
+		
+				$stmt = $this->db->prepare( $sql );
+				
+				$result = $stmt->execute( $userData);
+		*/
+		//shte si vikna dannite ot UserEdit i tam edin button delete!
+	}
 	
 }
 

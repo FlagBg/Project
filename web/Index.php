@@ -74,7 +74,7 @@ if ( $controller !== '' )
 		 * var	$login as object requesting function renderLoginForm
 		 */
 		
-		include __DIR__ . '/../Controllers/login.php';
+		include __DIR__ . '/../Controllers/Login.php';
 
 		$login	= new Login();
 		
@@ -98,7 +98,7 @@ if ( $controller !== '' )
 		 * 			trim the text in username and code in password; than create an object $login()
 		 * 			and request public function loggedIn() that prints everything for the User!
 		 */
-		include __DIR__ . '/../Controllers/login.php';
+		include __DIR__ . '/../Controllers/Login.php';
 		
 		if(! empty( $_POST ) && isset( $_POST['action'] ) && $_POST['action'] == 'login')
 		{
@@ -116,11 +116,16 @@ if ( $controller !== '' )
 			
 			$login	= new Login();
 			$login->login( $username, $password );
-			
+			//print "hi"; die();
 			if( $login->isloggedIn() )
+			//dotuk raboti, natatyk ne raboti? why?
 			{
+			
 				header( 'Location: index.php?controller=userEdit' );
-				exit;
+				//NE OTIVA V userEdit=a! ne raboti headera!!!
+				//exit; maham exit;a - kakvo pravi tozi izhod>>>?????? 
+				//ako vidya kak se vzimat dannite i se printyat v tablica, znachi tuk moga da 
+				//gi sloja kato edna tablica i da se printyat v tablica.
 			}
 			else
 			{
@@ -132,20 +137,10 @@ if ( $controller !== '' )
 	elseif($controller == 'userEdit')
 	{
 		include __DIR__ . '/../Controllers/UserEdit.php';
-		print_r($_SESSION);die();
+		//print_r($_SESSION);die();
 		$userEdit	= new UserEdit();
 		$userEdit->renderForm();
 	}
-// 	elseif($controller == 'userEditPost')
-// 	{
-// 		include __DIR__ . '/../Controllers/UserEdit.php';
-	
-// 		$userEdit	= new UserEdit();
-		
-// 	}
-	
-	//////////////////////////////////////////////////////
-	
 	elseif($controller == 'userCreate')
 	{
 		include __DIR__ . '/../Controllers/UserCreate.php';
@@ -154,30 +149,22 @@ if ( $controller !== '' )
 		$userCreate->renderForm();
 	
 	}
-	
+	//slagam si edin controllerDrop! shte trie! NOT HERE!!!! NEEDS TO BE IN OTHER PLACE!
+/* 	elseif($controller== 'dropUser')
+	{
+		include__DIR__ . '/../Controllers/UserDrop.php';
+		
+		$userDrop = new UserDrop();
+		$userDrop->renderForm();
+		
+		
+	} */
 }
-
-
-//echo 'done';
-
-
-
-// include_once 'Electromer.php';
-// include_once 'InterfaceElectromer.php';
-// include_once 'Users.php';
-// include_once 'Admin.php';
-
-
-// $el = new Electromer(33, 22);
-
-// //print "The price for the Day tariff is: " . $el->priceDayRateValue();
-// print "The price for the Night tariff is: " .$el->priceNightRateValue();
-// //print $el;
-
-
-// $admin = new Admin('Ivan', 'Ivanov', 22, 'admin', '3');
-// print " My first Name is: " . $admin->getFirstName() . " ";
-// print "I am  usertype: " . $admin->getType() . " ";
-// print "My level of persmission is " . $admin->getPermissionLevel() . " ";
-// print "My age is: " . $admin->getAge() . " ";
+else
+{
+	include __DIR__ . '/../Controllers/Home.php';
+	
+	$homeController	= new Home();
+	$homeController->renderView();
+}
 

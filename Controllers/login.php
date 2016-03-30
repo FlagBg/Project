@@ -53,7 +53,7 @@ class Login
 		if( $this->user = $userModel->login($username, $password))
 		{
 			$this->loggedIn 		= true;
-			$_SESSION['user_id']	= $this->user->getId();
+			//$_SESSION['user_id']	= $this->user->getId();
 			
 			
 		}
@@ -65,9 +65,19 @@ class Login
 	 */
 	public function isloggedIn()
 	{
-		return $this->loggedIn;
+		if ($this->loggedIn)
+		{   print "User is logged in";
+			var_dump( $this->user->getFirstName());
+			var_dump($this->user->getLastName());
+		}
+		else
+		{
+			print "Invalid login parameters";
+		}
+		
+		//I do comment that here and writing the code above!! 
+		//return $this->loggedIn;
 	}
-
 	/**
 	 * @brief	if all true take all the values from the html and print 
 	 * 

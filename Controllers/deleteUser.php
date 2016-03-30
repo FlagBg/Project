@@ -1,6 +1,6 @@
 <?php
 
-include_once '../Model/UsersModel.php';
+include_once '../Models/UsersModel.php';
 
 class DeleteUser
 {
@@ -8,6 +8,7 @@ class DeleteUser
 	
 	public function __construct()
 	{
+		//print "hi"; die();	
 		if( !empty( $_POST ) )
 		{
 			$this->userdata = array(
@@ -22,9 +23,25 @@ class DeleteUser
 	}
 	
 	public function create(){
-		$deleteM = new UsersModel();
+		$userModel = new UsersModel();
 	
-		$userModel->createUser( $this->userData );
+		$userModel->dropUser( $this->userData );
 	}
 	
-}
+	/**
+	 * @brief again we taking the datas from the html form and create the user;
+	 * 
+	 * @details this time redirecting into userEdit.html form
+	 * 
+	 * @return boolean true/false; 
+	 */
+	
+	public function renderForm()
+	{
+		$form = file_get_contents(__DIR__. '/../Views/userEdit.html');
+		
+		print ( $form );
+		
+
+	}
+}	print_r( $this->userData);
