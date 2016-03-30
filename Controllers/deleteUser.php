@@ -1,6 +1,6 @@
 <?php
 
-include_once '../Models/UsersModel.php';
+include_once '../Model/UsersModel.php';
 
 class DeleteUser
 {

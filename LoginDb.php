@@ -1,7 +1,7 @@
 
 <?php
 
-
+/*
 //include_once
 
 $name = "localhost";
@@ -13,7 +13,7 @@ $pass= "";
 
 $connect=
 //otkude i kak da go connectna:
-$dataBase= "";
+/* $dataBase= "";
 
 	if($connect)
 		
@@ -25,23 +25,3 @@ $dataBase= "";
 	{
 		print "Database not connected, try again...";
 	}
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

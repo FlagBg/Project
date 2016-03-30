@@ -16,17 +16,41 @@ class Database
 	 * @const	string DB_NAME
 	 * 
 	 * @param	float  $Cconnection
-	 * P@var	int	PORT
+	 * @var	    int	PORT
+	 */
+	
+	/**
+	 * 
+	 * @var const USER 
 	 */
 	const USER					= 'root';
+	
+	/**
+	 * 
+	 * @var const PASSWORD
+	 */
 	const PASSWORD				= '';
+	
+	/**
+	 * 
+	 * @var const	HOST
+	 */
 	const HOST					= 'localhost';
+	
+	/**
+	 * 
+	 * @var const	DB_NAME
+	 */
 	const DB_NAME				= 'electromer';
 	
+	/**
+	 * 
+	 * @var \PDO $connection
+	 */
 	public static $connection	= null;
 	
 	/**
-	 * private funstion construction as defauilt that creating connection with no param;
+	 * @brief	private funstion construction as defauilt that creating connection with no param;
 	 */
 	private function __construct()
 	{
@@ -46,8 +70,9 @@ class Database
 		if (self::$connection === NULL)
 		{
 			self::$connection	= new PDO( 'mysql:host=' . self::HOST . ';dbname=' . self::DB_NAME, self::USER, self::PASSWORD );
-		}
+		}                                                               //zahto e tova?//
 		
 		return self::$connection;
 	}
+	
 }

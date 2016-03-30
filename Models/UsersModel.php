@@ -4,15 +4,46 @@ include_once 'Database.php';
 include_once '../helpers/User.php';
 //include_once 'Login.php';
 
+/**
+ * 
+ * @brief 	class usermodel is representing the model of the nvc
+ * 			takes the values in the database and create it as an object
+ * 			
+ * 			
+ * @param	boolean $db
+ *
+ */
 class UsersModel {
 	
+	/**
+	 * 
+	 * @var boolean $db;
+	 */
 	protected $db;
 	
+	/**
+	 * create object 
+	 * 
+	 * param	string $this->db;
+	 *
+	 */
 	public function __construct()
 	{
 		$this->db = Database::getInstance();
 	}
 	
+	/**
+	 * @brief	create object login() that takes all the values from 
+	 * 			the database and return it as statement	
+	 * 
+	 * 
+	 * 
+	 * @param 	string  $username
+	 * @param	string  $password
+	 * @param 	string  sql;
+	 * @param	string	stm;
+	 * @param	string $reslut as array();
+	 */
 	public function login( $username, $password )
 	{
 		$sql	= '
@@ -21,18 +52,18 @@ class UsersModel {
 		';
 		
 		$stmt	= $this->db->prepare( $sql );
-		
+		//statement;
 		$result	= $stmt->execute( array( $username, $password ) );
 		
 		if ( $result )
 		{
 			if( $stmt->rowCount() > 0 )
 			{
-				$rows	= $stmt->fetchAll(PDO::FETCH_ASSOC);
-				$user	= array_pop( $rows );
+				$rows		= $stmt->fetchAll(PDO::FETCH_ASSOC);
+				$user		= array_pop( $rows ); //print_r(); die();
 				
-				return new User($user['fname'], $user['lname'], $user['age']);
-		
+				$userObj	= User($user['fname'], $user['lname'], $user['age']);
+				$userObj->setId( $user['id'] );
 			}
 			else
 			{
@@ -60,7 +91,7 @@ class UsersModel {
 		
 // 		$result = $stmt->execute( $userData );
 		
-	}
+//	}
 	
 	
 	public function createUser( $userData )

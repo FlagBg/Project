@@ -18,22 +18,21 @@ class Electromer implements InterfaceElectromer
 	 */
 	protected $dayRateValue;      //kw
 	protected $nightRateValue;		//kw 
+	protected $id;
 	protected $priceDayRate = 1.23;
 	protected $priceNightRate = 0.87;
-	
-	
-	
 	
 	/**
 	 * 
 	 * @param unknown $dayRateValue
 	 * @param unknown $nightRateValue
 	 */
-	public function __construct( $dayRateValue, $nightRateValue)
+	public function __construct( $id, $dayRateValue, $nightRateValue)
 	{
-		$this->dayRateValue =	$dayRateValue;
+		$this->dayRateValue   =	$dayRateValue;
 		$this->nightRateValue = $nightRateValue;
-		return print 'I am the Meter... my datas are: Day rate is:' . $this->dayRateValue . "." . "My night Rate is " .
+		$this->id             = $id;
+		return print "I am the Meter..  my Id is:..." . $this->id . "datas are: Day rate is: " . $this->dayRateValue . "." . "My night Rate is " .
 				$this->nightRateValue . " ";
 	}
 	

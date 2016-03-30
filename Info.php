@@ -57,7 +57,7 @@ Take, for example, a Database class. A database is a real object, so it makes se
 a Database class. However, although Oracle, MySQL, Postgres, MSSQL, and hundreds
 of other databases exist, you cannot download and install a generic database. You must
 choose a specific database.
-PHP provides a way for you to create a class that cannot be instantiated. This class is
+PHP provides a way for you to create a class that can not be instantiated. This class is
 known as an abstract class. For example, see the Database class:
 
 ---------------------------------------------------------------------------------------------

@@ -15,7 +15,7 @@ if ( ! empty( $_POST ) && isset( $_POST['action'] ) && $_POST['action'] == 'logi
 	
 	//print( $password); die();
 	//user angel = password(pass) 2f3bc18c0d3e6b1b8a445075535d26e9
-								  2f3bc18c0d3e6b1b8a445075535d26e9
+								//  2f3bc18c0d3e6b1b8a445075535d26e9
 	//user peter = password(gogogo) b96a8bdc65218ff43a8e83aa4628854f
 	//$password = 'pass';
 	

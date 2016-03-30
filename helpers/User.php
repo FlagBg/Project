@@ -17,6 +17,7 @@ class User
 	protected $firstName;
 	protected $lastName;
 	protected $age;
+	protected $id; //
 	
 	
 	/**
@@ -62,6 +63,11 @@ class User
 		$this->lastName = lastName;
 	}
 	
+	public function setId()
+	{
+		$this->id = $id;
+	}
+	
 	/**
 	 * return string;
 	 */
@@ -83,6 +89,9 @@ class User
 		return $this->age;
 	}
 	
-	
+	public function getId()
+	{
+		return $this->id;
+	}
 	
 }
