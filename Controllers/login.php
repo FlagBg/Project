@@ -65,7 +65,7 @@ class Login
 	 */
 	public function isloggedIn()
 	{
-		if ($this->loggedIn)
+		/*if ($this->loggedIn) KOMENTIRAM!!!
 		{   print "User is logged in";
 			var_dump( $this->user->getFirstName());
 			var_dump($this->user->getLastName());
@@ -73,10 +73,10 @@ class Login
 		else
 		{
 			print "Invalid login parameters";
-		}
+		}*/
 		
 		//I do comment that here and writing the code above!! 
-		//return $this->loggedIn;
+		return $this->loggedIn;
 	}
 	/**
 	 * @brief	if all true take all the values from the html and print 

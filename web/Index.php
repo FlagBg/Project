@@ -2,6 +2,8 @@
 
 session_start();
 
+include '../utils/UrlHelper.php';
+
 /*
 session_start();
 if (!isset($_SESSION['op'])) {
@@ -80,7 +82,10 @@ if ( $controller !== '' )
 		
 		if ( $login->isLoggedIn() )
 		{
-			header( '' );
+			//header( 'index.php?controller=userEdit' );//NB!!! HOME !!!
+			//exit();		
+			
+			UrlHelper::redirect( 'index.php?controller=userEdit' );
 		}
 		else
 		{
@@ -120,8 +125,10 @@ if ( $controller !== '' )
 			if( $login->isloggedIn() )
 			//dotuk raboti, natatyk ne raboti? why?
 			{
-			
-				header( 'Location: index.php?controller=userEdit' );
+				//header( 'Location: index.php?controller=userEdit' );
+				//exit();
+				
+				UrlHelper::redirect( 'index.php?controller=userEdit' );
 				//NE OTIVA V userEdit=a! ne raboti headera!!!
 				//exit; maham exit;a - kakvo pravi tozi izhod>>>?????? 
 				//ako vidya kak se vzimat dannite i se printyat v tablica, znachi tuk moga da 
@@ -167,4 +174,22 @@ else
 	$homeController	= new Home();
 	$homeController->renderView();
 }
+
+
+
+/*
+ * //$user_ip = $_SERVER['REMOTE_ADDR'];
+
+//$string = 'my ip is:' . $user_ip;
+
+function echo_ip()
+{
+	$user_ip = $_SERVER['REMOTE_ADDR'];
+	//global $user_ip;
+	$string = 'my ip is:' . $user_ip;
+	echo $string;
+}
+
+echo_ip();
+*/
 

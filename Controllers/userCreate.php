@@ -51,6 +51,7 @@ class UserCreate
 		$userModel = new UsersModel();
 	
 		$userModel->createUser( $this->userData );
+		var_dump( $userModel ); die("hi");
 	}
 	
 	/**
