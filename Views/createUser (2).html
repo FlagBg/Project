@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>UserCreate</title>
+	</head>
+		<body>
+			<h3>UserRegistration</h3>
+				<form action="/?controller=userCreate" method="post" onsubmit="return validate();">
+	 				
+	 				<label for="username">Username: </label><input type="text" name="username" id="username"><br> 
+	 				<label for="username">password: </label><input type="password" name="password" id="password">	<br/>
+					<label for="fname">FirstName: </label><input type="text" name="fname" id="fname">          		<br/>
+					<label for="fname">Last Name: </label><input type="text" name="lname" id="lname">          		<br/>
+					<label for="age"> Age:</label><input type="text" name="age" id="age">              				<br/>
+					<label for="role">Role: </label>
+						<select name="role_id" id="role_id">
+							<option value="0">Choose</option>
+							<option value="1">Guest</option>
+							<option value="2">Admin</option>
+							<option value="3">Super admin</option>
+						</select>
+					<input type="submit" name="submit" value="Submit"/> 
+					<!--name="submit" value="Update"<br> -->
+				</form>
+				<!-- <button type="button" onclick="('Set the datas')">Send!!!</button>-->
+				<script type="text/javascript">
+					function validate()
+					{
+						select	= document.getElementById( 'role_id' );
+						
+						if(select.value == '0')
+						{
+							alert('Choose role');
+							return false;
+						}
+						
+						return true;
+					}
+				</script>
+		
+		</body>
+</html>
