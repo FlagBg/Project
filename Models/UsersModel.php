@@ -21,6 +21,8 @@ class UsersModel {
 	 */
 	protected $db;
 	
+	const DEFAULT_ROLE_ID = 1;
+	
 	/**
 	 * create object 
 	 * 
@@ -106,7 +108,17 @@ class UsersModel {
 	
 	public function createUser( $userData )
 	{
-		$sql	= '
+		//$sql = 'INSERT INTO users($userData[''],...'
+		//$sql = 'INSERT INTO users(username,password,role_id,fname,lname,age) VALUES (username=?,password=?,role_id=?,fname=?,lname=?,age=?)';
+		//$sql = 'INSERT INTO users($userData['username'], $userData['password'],$userData['role_id'],
+		$userData['role_id'] = self::DEFAULT_ROLE_ID;
+		
+		$sql = 'INSERT INTO users (username,password,role_id,fname,lname,age) VALUES (?, ?, ?, ?, ?, ?)';
+		
+		$userData = array($userData['username'], $userData['password'], $userData['role_id'],$userData['fname'], $userData['lname'], $userData['age']);
+		
+		
+		/* $sql	= '
 			INSERT INTO users
 			SET username = ?,
 				password = ?,
@@ -114,11 +126,13 @@ class UsersModel {
 				fname = ?,
 				lname = ?,
 				age = ?
-		';
-		
+		'; */
+		//print_r($userData);;
 		$stmt	= $this->db->prepare( $sql );
-		
 		$result	= $stmt->execute( $userData );
+		
+		return $result;
+		//var_dump( $result );die();
 	}
 	
 	public function dropUser( $userData )

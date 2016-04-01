@@ -129,6 +129,7 @@ if ( $controller !== '' )
 				//exit();
 				
 				UrlHelper::redirect( 'index.php?controller=userEdit' );
+				//die('logged in');
 				//NE OTIVA V userEdit=a! ne raboti headera!!!
 				//exit; maham exit;a - kakvo pravi tozi izhod>>>?????? 
 				//ako vidya kak se vzimat dannite i se printyat v tablica, znachi tuk moga da 
@@ -154,7 +155,17 @@ if ( $controller !== '' )
 	
 		$userCreate	= new UserCreate();
 		$userCreate->renderForm();
-	
+		
+		if ( $_POST )
+		{
+			//var_dump( $userCreate->create() ); die();
+			$result	= $userCreate->create();//ei tuk dava greshkata!!!
+			
+			if ( $result )
+			{
+				UrlHelper::redirect( 'index.php?controller=login' );
+			}
+		}
 	}
 	//slagam si edin controllerDrop! shte trie! NOT HERE!!!! NEEDS TO BE IN OTHER PLACE!
 /* 	elseif($controller== 'dropUser')

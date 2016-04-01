@@ -7,51 +7,54 @@ include_once '../Models/UsersModel.php';
  * @brief this class create user! it is using constructor and connection with the database!
  * 
  * @details: it works with inherit singleton database connection; and passing the cription using md5;
- * 
- * 
- *
  */
-
 class UserCreate
-{
+{	
 	/**
+	 * @brief	construct the model
 	 * 
-	 * @var Connection $userData;
-	 */
-	protected $userData;	
-	
-	/**
-	 * @brief	
+	 * @return	boolean		
 	 */
 	public function __construct()
-	{
-		if( !empty( $_POST ) )
+	{    /* if( ! empty( $_POST ) )
 		{
-			$this->userdata = array(
-				'username' => $_POST['username'], 
-				'password' => md5(trim($_POST['password'])), 
-				'role_id' => $_POST['role_id'], 
-				'fname' => $_POST['fname'], 
-				'lname' => $_POST['lname'], 
-				'age' => $_POST['age'], 
-			);
-		}
+			$userdata = array(
+				'username' => $_POST['username'],
+				'password' => md5( trim( $_POST['password'] ) ),
+				'fname' => $_POST['fname'],
+				'lname' => $_POST['lname'],
+				'age' => $_POST['age']
+			);  I DON'T NEED IT HERE, I NEED IT BELOW, because it is creating by default an object;
+		}*/
 	}
 	
 	/**
-	 * @brief 	this function create the model,
+	 * @brief 	this function create the model, we create the if statement, if!empty array()
 	 * 
 	 * @param 	$this->userData;$this
 	 * 
-	 * $return	$user->userData	
+	 * $return	array( $result ) not anymore $user->userData	
 	 * 
 	 */
 	public function create()
 	{ 
-		$userModel = new UsersModel();
+		if( ! empty( $_POST ) )
+		{
+			$userdata = array(
+				'username' => $_POST['username'],
+				'password' => md5( trim( $_POST['password'] ) ),
+				'fname' => $_POST['fname'],
+				'lname' => $_POST['lname'],
+				'age' => $_POST['age']
+			); 
+		}
+		
+		$userModel	= new UsersModel();
 	
-		$userModel->createUser( $this->userData );
-		var_dump( $userModel ); die("hi");
+		$result		= $userModel->createUser( $userdata );
+		
+		return $result;
+		
 	}
 	
 	/**
