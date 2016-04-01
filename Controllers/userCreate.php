@@ -43,6 +43,7 @@ class UserCreate
 			$userdata = array(
 				'username' => $_POST['username'],
 				'password' => md5( trim( $_POST['password'] ) ),
+				'role_id' =>$_POST['role_id'],
 				'fname' => $_POST['fname'],
 				'lname' => $_POST['lname'],
 				'age' => $_POST['age']

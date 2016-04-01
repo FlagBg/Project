@@ -21,7 +21,8 @@ class UsersModel {
 	 */
 	protected $db;
 	
-	const DEFAULT_ROLE_ID = 1;
+	//const DEFAULT_ROLE_ID = 1;
+	
 	
 	/**
 	 * create object 
@@ -44,10 +45,26 @@ class UsersModel {
 	 * @param	string  $password
 	 * @param 	string  sql;
 	 * @param	string	stm;
-	 * @param	string $reslut as array();
+	 * @param	string $result as array();
 	 */
 	public function login( $username, $password )
 	{
+		//malka prerabotka
+		/*
+		 * public function login ( $login )
+		 * {
+		 * 		$login = array( $login['username'], $login['$password'] );
+		 * 
+		 *  	$sql   = 'SELECT * FROM users WHERE username = ? AND password = ?';
+		 * 
+		 * 		$stmt = $this->db->prepare( $sql );
+		 * 		
+		 * 		$result = $stmt->execute( array( $login ) 
+		 * 				if ( $result ) 
+		 * 					{ $rows = stmt->fetchAll(PDO::FETCH_ASSOC);
+		 * 					{ $user	= array_pop( $rows );
+		 * 
+		 */
 		$sql	= '
 			SELECT * FROM users
 			WHERE username = ? AND password = ?
@@ -55,6 +72,7 @@ class UsersModel {
 		
 		$stmt	= $this->db->prepare( $sql );
 		//statement;
+		
 		$result	= $stmt->execute( array( $username, $password ) );
 		
 		if ( $result )
@@ -63,10 +81,16 @@ class UsersModel {
 			{
 				$rows		= $stmt->fetchAll(PDO::FETCH_ASSOC);
 				$user		= array_pop( $rows ); 
+				//var_dump( $rows );die(); //vadi mi cialoto arrays!!!
+				//var_dump( $user );die(); // tozi put izvadi vsi4ko... три пъти нищо не вади!
 				//print_r("hi");
 				//var_dump( $user );//die();
+				
 				return new User( $user['fname'], $user['lname'], $user['age'] );
-			
+								//$user['username'], $user['id'] ); just in case; 
+				//var_dump($user);die();
+				//return $user;
+				//var_dump( $user );die('hi');
 				//$userObj	= User($user['fname'], $user['lname'], $user['age']);
 				//$userObj->setId( $user['id'] );
 				
@@ -105,13 +129,22 @@ class UsersModel {
 		
 	}
 	
-	
-	public function createUser( $userData )
+	/**
+	 * @brief 		function createUser that insert datas in the db, it works with sql query and assiciative array;
+	 * 
+	 * @details		when is called it takes the params from the db it is doing the query INSERT
+	 * 
+	 * @param 		array $userData
+	 * 
+	 * @return 		void
+	 * 
+	 */	public function createUser( $userData )
 	{
 		//$sql = 'INSERT INTO users($userData[''],...'
 		//$sql = 'INSERT INTO users(username,password,role_id,fname,lname,age) VALUES (username=?,password=?,role_id=?,fname=?,lname=?,age=?)';
 		//$sql = 'INSERT INTO users($userData['username'], $userData['password'],$userData['role_id'],
-		$userData['role_id'] = self::DEFAULT_ROLE_ID;
+		
+		//$userData['role_id'] = self::DEFAULT_ROLE_ID; //just in case removing the javascript and put default role!
 		
 		$sql = 'INSERT INTO users (username,password,role_id,fname,lname,age) VALUES (?, ?, ?, ?, ?, ?)';
 		
