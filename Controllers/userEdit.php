@@ -43,9 +43,17 @@ class UserEdit
 	 * 
 	 * @return 	$this->user->userData;
 	 */
-	public function userEdit()
+	public function userEdit()//dobavka Pit!
 	{
-		$this->userEditModel->editUser( $this->userData );
+		$userData = array(
+			$_POST['username'],
+			$_POST['role_id'],
+			$_POST['fname'],
+			$_POST['lname'],
+			$_POST['age']
+		);
+		
+		$this->userEditModel->userEdit( $this->userId, $userData );
 	}
 	/**
 	 * @brief	function that is getting the html values;
@@ -64,9 +72,16 @@ class UserEdit
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+	/**
+	 * @brief	function that is putting the values into the form according to userId'
+	 * 
+	 * @param	int 	userId
+	 */
 	protected function getUserData()
 	{
 		$this->userData	= $this->userEditModel->getUserData( $this->userId );
+	
+	
+	
 	}
 }

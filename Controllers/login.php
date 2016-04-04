@@ -87,6 +87,7 @@ class Login
 		if( isset( $_SESSION['user_id'] ) )
 		{
 			unset( $_SESSION['user_id'] );
+			
 		}
 	}
 	
@@ -101,4 +102,11 @@ class Login
 		
 		print( $form );
 	}
+	
+// 	public function dropUser()
+// 	{
+// 	//	if( isset( $_SESSION['user_id'] );
+				
+		
+// 	}
 }

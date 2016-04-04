@@ -147,15 +147,24 @@ if ( $controller !== '' )
 			else
 			{
 				print_r( 'Error on login' );
+				$login->renderLoginForm();
+				//UrlHelper::redirect('index.php?controller=Login.php');
+				
 				exit;
 			}
 		}
 	}
-	elseif($controller == 'userEdit')
+	elseif($controller == 'UserEdit')
 	{
 		include __DIR__ . '/../Controllers/UserEdit.php';
-		//print_r($_SESSION);die();
+		
 		$userEdit	= new UserEdit();
+		
+		if( ! empty( $_POST ) )
+		{
+			$userEdit->userEdit();
+		}
+		
 		$userEdit->renderForm();
 	}
 	elseif($controller == 'userCreate')
@@ -176,6 +185,11 @@ if ( $controller !== '' )
 			}
 		}
 	}
+	else
+	{
+		die('fff');
+	}
+	
 	//slagam si edin controllerDrop! shte trie! NOT HERE!!!! NEEDS TO BE IN OTHER PLACE!
 /* 	elseif($controller== 'dropUser')
 	{

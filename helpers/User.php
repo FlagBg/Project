@@ -20,13 +20,24 @@ class User
 	 * @var	string $lastName
 	 */
 	protected $lastName;
+	
+	/**
+	 * 
+	 * @var int $age
+	 */
 	protected $age;
+	
+	/**
+	 * 
+	 * @var int $id;
+	 */
 	protected $id;
 	
 	
 	/**
 	 * @brief	creating object, using function __construct;
 	 * 
+	 * @param	int	   $id
 	 * @param 	string $firstName
 	 * @param 	string $lastName
 	 * @param 	int    $age
@@ -51,6 +62,7 @@ class User
 	}
 	
 	/**
+	 * @brief	getFirstName
 	 * @return	string $this->firstName
 	 */
 	public function getFirstName()
@@ -68,13 +80,20 @@ class User
 		$this->lastName = lastName;
 	}
 	
+	/**
+	 * @brief	setId
+	 * 
+	 * @param int 	id;
+	 */
 	public function setId()
 	{
 		$this->id = $id;
 	}
 	
 	/**
-	 * return string;
+	 * @brief getLastName
+	 * 
+	 * @return string;
 	 */
 	public function getLastName()
 	{
@@ -82,13 +101,20 @@ class User
 	}
 	
 	/**
-	 * return int age;
+	 * @brief	setAge
+	 * 
+	 * @return int age;
 	 */
 	public function setAge()
 	{
 		$this->age = $age;
 	}
 	
+	/**
+	 * @brief getAge;
+	 * 
+	 * @retun int age
+	 */
 	public function getAge()
 	{
 		return $this->age;

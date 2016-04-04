@@ -107,26 +107,27 @@ class UsersModel {
 		}
 	}
 	
- 	public function userEdit( $userData )
+ 	public function userEdit( $userId, $userData )
  	{
 //     kak si go predstavyam . ... edna tablica, koyato vzima dannite za usera.... otdyasno stoyt edni buton4eta
 //		koito kato natisna da promenyam poleto, koeto promenyam, inache vsi4ko drugo da si stoi
 //		kak e logi4no tova da raboti.... tryabva sigurno da se opishat cialostni zayavki... ima nyakakuv nachin;
 //		sega shte napravya deleteUser, zashtoto mislya che e lesno!
+ 		$userId	= (int) $userId;
+ 		
  		$sql	= '
-				UPDATE `users` SET `id`=[value-1],
- 				`username`=,
-				`password`=,
-				`role_id`=,
- 				`fname`=,
- 				`lname`=[value-6],
- 				`age`=[value-7]
-				';
+				UPDATE users
+ 				SET username=?,
+					role_id=?,
+ 					fname=?,
+ 					lname=?,
+ 					age=?
+ 				WHERE user_id = ' . $userId;
  		
  		$stmt 	= $this->db->prepare( $sql );
-		
+ 		var_dump($userData);
  		$result = $stmt->execute( $userData );
-		
+ 		
 	}
 	
 	/**
@@ -142,11 +143,13 @@ class UsersModel {
 		
 		$result = $stmt->execute( array( $userId ) );
 		
-		$userData	= array();
+		$userData	= array(); 
+		//array( $userData['userName'],$userData['']
 		if( $result )
 		{
 			$userData	= $stmt->fetch(PDO::FETCH_ASSOC);
 		}
+		
 		
 		return $userData;
 	}
@@ -172,8 +175,6 @@ class UsersModel {
 		
 		$userData = array($userData['username'], $userData['password'], $userData['role_id'],$userData['fname'], $userData['lname'], $userData['age']);
 		
-		
-		
 		/*
 		$userData = array($userData['id'])
 		$waarde = mysql_insert_id($this->db);
@@ -198,7 +199,7 @@ class UsersModel {
 		//var_dump( $result );die();
 	}
 	
-	public function dropUser( $userData )
+	public function deleteUser( $deleteUser )
 	{
 		print "delete";
 		/*
