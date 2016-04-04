@@ -92,6 +92,15 @@ if ( $controller !== '' )
 			$login->renderLoginForm();
 		}
 	}
+	elseif( $controller == 'logout' )
+	{
+		include __DIR__ . '/../Controllers/Login.php';
+		
+		$login	= new Login();
+		$login->logout();
+		
+		UrlHelper::redirect( 'index.php?controller=login' );
+	}
 	/**
 	 * pokazvame v koi controller getva in!
 	 */

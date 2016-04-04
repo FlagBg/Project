@@ -53,9 +53,7 @@ class Login
 		if( $this->user = $userModel->login($username, $password))
 		{
 			$this->loggedIn 		= true;
-			//$_SESSION['user_id']	= $this->user->getId();
-			
-			
+			$_SESSION['user_id']	= $this->user->getId();
 		}
 	}
 
@@ -78,6 +76,20 @@ class Login
 		//I do comment that here and writing the code above!! 
 		return $this->loggedIn;
 	}
+	
+	/**
+	 * @brief	Logout user
+	 * 
+	 * @return	void
+	 */
+	public function logout()
+	{
+		if( isset( $_SESSION['user_id'] ) )
+		{
+			unset( $_SESSION['user_id'] );
+		}
+	}
+	
 	/**
 	 * @brief	if all true take all the values from the html and print 
 	 * 

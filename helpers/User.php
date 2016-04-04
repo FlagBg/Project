@@ -15,9 +15,13 @@ class User
 	 * @param 	int    $age;
 	 */
 	protected $firstName;
+	
+	/**
+	 * @var	string $lastName
+	 */
 	protected $lastName;
 	protected $age;
-	protected $id; //
+	protected $id;
 	
 	
 	/**
@@ -27,11 +31,12 @@ class User
 	 * @param 	string $lastName
 	 * @param 	int    $age
 	 */
-	public function __construct( $firstName, $lastName, $age)
+	public function __construct( $id, $firstName, $lastName, $age)
 	{
-		$this->firstName 	= 	$firstName;
-		$this->lastName 	= 	$lastName;
-		$this->age 			= 		$age;
+		$this->id			= $id;
+		$this->firstName 	= $firstName;
+		$this->lastName 	= $lastName;
+		$this->age 			= $age;
 	}
 	
 	
@@ -89,6 +94,11 @@ class User
 		return $this->age;
 	}
 	
+	/**
+	 * @brief	Get user id
+	 * 
+	 * @return	int
+	 */
 	public function getId()
 	{
 		return $this->id;

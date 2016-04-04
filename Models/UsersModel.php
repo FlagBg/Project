@@ -86,7 +86,7 @@ class UsersModel {
 				//print_r("hi");
 				//var_dump( $user );//die();
 				
-				return new User( $user['fname'], $user['lname'], $user['age'] );
+				return new User( $user['id'], $user['fname'], $user['lname'], $user['age'] );
 								//$user['username'], $user['id'] ); just in case; 
 				//var_dump($user);die();
 				//return $user;
@@ -130,6 +130,28 @@ class UsersModel {
 	}
 	
 	/**
+	 * @brief	Get user data
+	 * 
+	 * @return	array
+	 */
+	public function getUserData( $userId )
+	{
+		$sql	= 'SELECT * FROM users WHERE id = ?';
+		
+		$stmt 	= $this->db->prepare( $sql );
+		
+		$result = $stmt->execute( array( $userId ) );
+		
+		$userData	= array();
+		if( $result )
+		{
+			$userData	= $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+		
+		return $userData;
+	}
+	
+	/**
 	 * @brief 		function createUser that insert datas in the db, it works with sql query and assiciative array;
 	 * 
 	 * @details		when is called it takes the params from the db it is doing the query INSERT
@@ -151,6 +173,14 @@ class UsersModel {
 		$userData = array($userData['username'], $userData['password'], $userData['role_id'],$userData['fname'], $userData['lname'], $userData['age']);
 		
 		
+		
+		/*
+		$userData = array($userData['id'])
+		$waarde = mysql_insert_id($this->db);
+		*/
+		
+		
+		
 		/* $sql	= '
 			INSERT INTO users
 			SET username = ?,
@@ -161,7 +191,7 @@ class UsersModel {
 				age = ?
 		'; */
 		//print_r($userData);;
-		$stmt	= $this->db->prepare( $sql );
+		$stmt	=  $this->db->prepare( $sql );
 		$result	= $stmt->execute( $userData );
 		
 		return $result;
