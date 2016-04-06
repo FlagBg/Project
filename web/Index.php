@@ -61,6 +61,7 @@ else
 	//ne sum podal else case /..... toest.....
 	//http://www.electromer.com/?controller=login
 }
+error_log(print_r($controller, true), 3, 'D:\log.txt');
 //if get controller and exists and not empty and equal ot
 if ( $controller !== '' )
 {	
@@ -81,9 +82,9 @@ if ( $controller !== '' )
 		$login	= new Login();
 		
 		if ( $login->isLoggedIn() )
-		{
+		{ // print('hi'); die('asdfafds');
 			//header( 'index.php?controller=userEdit' );//NB!!! HOME !!!
-			//exit();		
+			exit();		
 			
 			UrlHelper::redirect( 'index.php?controller=userEdit' );
 		}
@@ -115,7 +116,7 @@ if ( $controller !== '' )
 		include __DIR__ . '/../Controllers/Login.php';
 		
 		if(! empty( $_POST ) && isset( $_POST['action'] ) && $_POST['action'] == 'login')
-		{
+		{//tova tuk otkade go vze????
 			$username	= '';
 			if( isset($_POST['username']) )
 			{
@@ -139,22 +140,22 @@ if ( $controller !== '' )
 				
 				UrlHelper::redirect( 'index.php?controller=userEdit' );
 				//die('logged in');
-				//NE OTIVA V userEdit=a! ne raboti headera!!!
-				//exit; maham exit;a - kakvo pravi tozi izhod>>>?????? 
-				//ako vidya kak se vzimat dannite i se printyat v tablica, znachi tuk moga da 
-				//gi sloja kato edna tablica i da se printyat v tablica.
+
 			}
 			else
 			{
 				print_r( 'Error on login' );
+				//print('hi'); die();
 				$login->renderLoginForm();
 				//UrlHelper::redirect('index.php?controller=Login.php');
 				
+				$homeController->renderView();
+				//var_dump( $homeController); die();
 				exit;
 			}
 		}
 	}
-	elseif($controller == 'UserEdit')
+	elseif($controller == 'userEdit')
 	{
 		include __DIR__ . '/../Controllers/UserEdit.php';
 		
@@ -166,6 +167,23 @@ if ( $controller !== '' )
 		}
 		
 		$userEdit->renderForm();
+	}
+	elseif($controller =='userDelete')//elseif($controller == 'userDelete')
+	{
+		include __DIR__ . '/../Controllers/UserEdit.php';
+		
+		$userDelete	= new UserEdit();
+		
+		if( ! empty( $_POST ) )
+		{
+			
+			var_dump($userDelete);
+			$userDelete->userDelete();
+			//print('asdfdasfasfas'); die();
+		}
+		
+		//$userDelete->renderForm();
+		//die();//dobavka mine! // promenih $userEdit na 4userDelete
 	}
 	elseif($controller == 'userCreate')
 	{
@@ -182,12 +200,15 @@ if ( $controller !== '' )
 			if ( $result )
 			{
 				UrlHelper::redirect( 'index.php?controller=login' );
+				//“Œ¬¿ “”  √–≈ÿÕŒ À» ≈???
 			}
 		}
 	}
 	else
 	{
-		die('fff');
+		//die('fff');
+		UrlHelper::redirect( 'index.php?controller=' );
+		//TOVA AKO NAPISHA: UrlHelper::redirect( 'index.php?conctroller=Home';
 	}
 	
 	//slagam si edin controllerDrop! shte trie! NOT HERE!!!! NEEDS TO BE IN OTHER PLACE!

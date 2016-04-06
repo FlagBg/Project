@@ -45,7 +45,6 @@ class Login
 	 */
 	public function login( $username, $password )
 	{
-		
 		$password = md5( trim( $password ) );
 		//die( $password ); 
 		$userModel = new UsersModel();
@@ -63,7 +62,7 @@ class Login
 	 */
 	public function isloggedIn()
 	{
-		/*if ($this->loggedIn) KOMENTIRAM!!!
+		/* if ($this->loggedIn) //KOMENTIRAM!!!
 		{   print "User is logged in";
 			var_dump( $this->user->getFirstName());
 			var_dump($this->user->getLastName());
@@ -71,8 +70,8 @@ class Login
 		else
 		{
 			print "Invalid login parameters";
-		}*/
-		
+		}
+		 */
 		//I do comment that here and writing the code above!! 
 		return $this->loggedIn;
 	}
@@ -101,6 +100,7 @@ class Login
 		$form	= file_get_contents( __DIR__ . '/../Views/Login.html' );
 		
 		print( $form );
+		print('render form'); die();
 	}
 	
 // 	public function dropUser()

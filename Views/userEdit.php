@@ -6,7 +6,7 @@
 
 <body>
 	<h3>EditUsername</h3>
-	<form action="?controller=UserEdit" method="post" onsubmit="return validate();">
+	<form action="?controller=userEdit" method="post" onsubmit="return validate();">
 		<label for="username">Username:</label><input type="text" name="username" id="username" value="<?= $this->userData['username'] ?>"><br>
 		<label for="FirstName">FirstName</label><input type="text" name="fname" id="fname" value="<?php echo $this->userData['fname'] ?>"><br>
 		<label for="LastName" >LastName</label><input type="text" name="lname" id="lname" value="<?php echo $this->userData['lname'] ?>"><br>
@@ -35,8 +35,9 @@
 				return true;
 				
 		</script>
-		<button type="submit" value="remove" name="op">Remove</button>
-		<div><a href="index.php?controller=userDrop">DeleteUser</a></div>
+		<form action="?controller=userDelete" method="post">
+			<input type="submit" name="submit" value="Delete">
+		</form>
 	
 	<a href="index.php?controller=logout">Logout</a>
 </body>

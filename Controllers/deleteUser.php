@@ -1,11 +1,12 @@
 <?php
 
-include_once '../Models/UsersModel.php';
+//include_once '../Models/UsersModel.php';
 
 
 
 /**
  * @brief	class that deleteUser that is logged;
+ * 			N.B - I DO NOT USE THIS CONTROLLER;
  * 
  * 
  * @details inherit the DB, extract the datas and put it the html, than according to the id

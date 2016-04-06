@@ -107,12 +107,9 @@ class UsersModel {
 		}
 	}
 	
- 	public function userEdit( $userId, $userData )
+ 	public function userEdit( $userId, $userData)
  	{
-//     kak si go predstavyam . ... edna tablica, koyato vzima dannite za usera.... otdyasno stoyt edni buton4eta
-//		koito kato natisna da promenyam poleto, koeto promenyam, inache vsi4ko drugo da si stoi
-//		kak e logi4no tova da raboti.... tryabva sigurno da se opishat cialostni zayavki... ima nyakakuv nachin;
-//		sega shte napravya deleteUser, zashtoto mislya che e lesno!
+
  		$userId	= (int) $userId;
  		
  		$sql	= '
@@ -122,12 +119,30 @@ class UsersModel {
  					fname=?,
  					lname=?,
  					age=?
- 				WHERE user_id = ' . $userId;
+ 				WHERE id = ' . $userId;
  		
  		$stmt 	= $this->db->prepare( $sql );
- 		var_dump($userData);
- 		$result = $stmt->execute( $userData );
  		
+ 		$result = $stmt->execute( $userData);
+ 		
+ 		return $result;
+	}
+	
+	public function userDelete( $userId )
+	{
+		print('hi'); //vlizam tuk
+		$userId = (int) $userId;
+	
+		
+		$sql = 'DELETE FROM users WHERE id = ' . $userId;
+		
+		$stmt = $this->db->prepare( $sql );
+		
+		$result = $stmt->execute( array( $userId ));
+		
+		return $result;
+	
+		
 	}
 	
 	/**
@@ -198,11 +213,11 @@ class UsersModel {
 		return $result;
 		//var_dump( $result );die();
 	}
-	
+	/*
 	public function deleteUser( $deleteUser )
 	{
 		print "delete";
-		/*
+		
 		$sql = '
 				DELETE FROM users WHERE id=?
 				';
@@ -212,7 +227,6 @@ class UsersModel {
 				$result = $stmt->execute( $userData);
 		*/
 		//shte si vikna dannite ot UserEdit i tam edin button delete!
-	}
-	
 }
+	
 

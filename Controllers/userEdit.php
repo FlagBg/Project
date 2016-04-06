@@ -45,6 +45,7 @@ class UserEdit
 	 */
 	public function userEdit()//dobavka Pit!
 	{
+		//$this->userEditModel->editUser( $this->userData );
 		$userData = array(
 			$_POST['username'],
 			$_POST['role_id'],
@@ -55,6 +56,27 @@ class UserEdit
 		
 		$this->userEditModel->userEdit( $this->userId, $userData );
 	}
+	
+	public function userDelete()// tazi boza e moya
+	{
+		var_dump($this->userId);
+		
+		$this->userEditModel->userDelete( $this->userId);
+		
+			if( isset( $_SESSION['user_id'] ) )
+				{
+					unset( $_SESSION['user_id'] );
+					
+					include __DIR__ . '/../Controllers/Home.php';
+					
+					$homeController	= new Home();
+					$homeController->renderView();
+			
+				}
+				
+			
+	}
+	
 	/**
 	 * @brief	function that is getting the html values;
 	 * 
@@ -69,6 +91,7 @@ class UserEdit
 		$form	= include ( __DIR__ . '/../Views/userEdit.php' );
 		
 		print( $form );
+		//die('asdfdasfasdfaf');
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
